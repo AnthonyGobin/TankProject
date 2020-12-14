@@ -13,16 +13,16 @@ const io = require("socket.io")(server, {
   },
 });
 
-const spawn = require("child_process").spawn;
-const ls = spawn("python", ["Drivingscripts.py", "arg1", "arg2"]);
 
 app.use(index);
 
-const commands = (cmd) => {};
+const commands = (cmd) => {
+  console.log(cmd);
+};
 
 io.on("connection", (socket) => {
   socket.on("command", (data) => {
-    console.log(data);
+    commands(data);
   });
   socket.on("disconnect", () => {
     console.log("Client disconnected");

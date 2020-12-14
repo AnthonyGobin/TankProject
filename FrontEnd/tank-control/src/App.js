@@ -7,6 +7,7 @@ const io = socketIOClient(ENDPOINT, {
 });
 
 const handleClick = (cmd) => {
+  console.log(cmd);
   io.emit("command", cmd);
 };
 
@@ -17,19 +18,19 @@ function App() {
     };
   });
 
-  document.addEventListener("mouseup", () => handleClick("Stop"));
   return (
     <>
-      <button className="controls" onMouseDown={() => handleClick("forward")}>
+      <img src="http://192.168.0.42:3030/stream.mjpg" alt="stream"/>
+      <button className="controls" onMouseDown={() => handleClick("forward")} onMouseUp={() => handleClick("Stop")}>
         Forward
       </button>
-      <button className="controls" onMouseDown={() => handleClick("backward")}>
+      <button className="controls" onMouseDown={() => handleClick("backward")} onMouseUp={() => handleClick("Stop")}>
         Backward
       </button>
-      <button className="controls" onMouseDown={() => handleClick("left")}>
+      <button className="controls" onMouseDown={() => handleClick("left")} onMouseUp={() => handleClick("Stop")}>
         Left
       </button>
-      <button className="controls" onMouseDown={() => handleClick("right")}>
+      <button className="controls" onMouseDown={() => handleClick("right")} onMouseUp={() => handleClick("Stop")}>
         Right
       </button>
     </>
